@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            padding: 200px;
+        }
+
+        .box {
+            height: 100px;
+            width: 100px;
+            border: 1px solid #ccc;
+            font-size: 50px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        button {
+            padding: 6px;
+        }
+
+        .result {
+            color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="box"></div>
+    <button id="start">开始</button>
+    <button id="end">结束</button>
+    <p id="result" class="result"></p>
+</body>
+
+</html>
+<script>
+
+    var oBox = document.getElementById("box");
+    var oStart = document.getElementById("start");
+    var oEnd = document.getElementById("end");
+    var oResult = document.getElementById("result");
+
+    //获取随机数方法
+    function getRandom(min, max) {
+        var range = max - min;
+        var randNum = Math.random() * range;
+        return min + Math.round(randNum);
+    }
+
+    var timer;
+    var num;
+    //点击 oStart 按钮 产生随机数
+    oStart.onclick = function () {
+        timer = setInterval(function () {
+            num = getRandom(1, 6);
+            oBox.innerHTML = num;
+        }, 10)
+    }
+
+    //点击 oEnd 按钮 清除定时器，停止随机数
+    oEnd.onclick=function(){
+        clearInterval(timer);
+        //判断是否大于3  大于3 大   小于3  小
+        if(num > 3){
+            oResult.innerHTML = "大";
+        }else{
+            oResult.innerHTML = "小";
+        }
+    }
+</script>
